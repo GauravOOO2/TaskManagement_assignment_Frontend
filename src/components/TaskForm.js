@@ -6,18 +6,24 @@ export default function TaskForm({ onAddTask }) {
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [category, setCategory] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (title.trim()) {
-      onAddTask({ title, description, dueDate, category });
+    try {
+      await onAddTask({ title, description, dueDate, category });
       setTitle('');
       setDescription('');
       setDueDate('');
       setCategory('');
+      setError('');
       setIsOpen(false);
+    } catch (error) {
+      setError(error.message);
     }
   };
+
+  const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
 
   return (
     <div>
@@ -39,7 +45,6 @@ export default function TaskForm({ onAddTask }) {
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Enter task title"
                 className="w-full p-2 border rounded mb-2"
-                required
               />
               <textarea
                 value={description}
@@ -48,12 +53,15 @@ export default function TaskForm({ onAddTask }) {
                 className="w-full p-2 border rounded mb-2"
                 rows="3"
               />
+              <p className="text-sm text-gray-500 mb-2">Both title and description are required.</p>
               <input
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
+                min={today} // Set minimum date to today
                 className="w-full p-2 border rounded mb-2"
               />
+              <p className="text-sm text-gray-500 mb-2">Due date must be today or in the future.</p>
               <input
                 type="text"
                 value={category}
@@ -61,10 +69,14 @@ export default function TaskForm({ onAddTask }) {
                 placeholder="Enter task category"
                 className="w-full p-2 border rounded mb-2"
               />
+              {error && <p className="text-red-500 mb-2">{error}</p>}
               <div className="flex justify-end">
                 <button
                   type="button"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    setError('');
+                  }}
                   className="mr-2 px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
                 >
                   Cancel

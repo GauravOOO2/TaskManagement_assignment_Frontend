@@ -32,10 +32,15 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(task),
       });
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message);
+      }
       const newTask = await res.json();
       setTasks([...tasks, newTask]);
     } catch (error) {
       console.error('Error adding task:', error);
+      throw error;
     }
   };
 
