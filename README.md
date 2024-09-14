@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Task Management Application
+
+## Overview
+
+This Task Management Application is a full-stack web application designed to help users organize and track their tasks efficiently. It provides a user-friendly interface for creating, updating, and deleting tasks, as well as marking them as complete.
+
+## Features
+
+- Create new tasks with title, description, due date, and category
+- View a list of all tasks
+- Edit existing tasks
+- Mark tasks as complete
+- Delete tasks
+- Filter tasks by category or completion status
+- Sort tasks by due date or creation date
+
+## Technology Stack
+
+- Frontend: Next.js, React, Tailwind CSS
+- Backend: Node.js, Express.js
+- Database: MongoDB
+- Testing: Jest, Supertest
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (v14 or later)
+- npm (v6 or later)
+- MongoDB (v4 or later)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/GauravOOO2/TaskManagement_assignment_Frontend.git
+   ```
+
+2. Install dependencies for both frontend and backend:
+   ```bash
+   cd ../TaskManagement_assignment_Frontend
+   npm install
+   ```
+
+3. Set up environment variables:
+   - In the `frontend` directory, create a `.env.local` file with:
+     ```bash
+     NEXT_PUBLIC_API_URL=http://localhost:5000/api
+     ```
+### Running the Application Locally
+
+1. Start the backend server:
+   ```bash
+   cd backend
+   npm run dev
+   ```
+
+2. In a new terminal, start the frontend development server:
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+
+3. Open your browser and navigate to `http://localhost:3000`
+
+## API Endpoints
+
+- `GET /api/tasks`: Retrieve all tasks
+- `POST /api/tasks`: Create a new task
+- `GET /api/tasks/:id`: Retrieve a specific task
+- `PUT /api/tasks/:id`: Update a specific task
+- `DELETE /api/tasks/:id`: Delete a specific task
+
+## Testing
+
+To run the backend tests:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd backend
+npm test
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This application can be deployed using platforms like Vercel for the frontend and backend. Make sure to set the appropriate environment variables in your deployment platform.
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Contributions are welcome! Please feel free to submit a Pull Request.
